@@ -12,7 +12,7 @@ import java.util.Set;
 @Component
 public class DataLoader implements CommandLineRunner{
 
-    private final OwnerRepository employeeRepo;
+    private final OwnerRepository OwnerRepo;
     private final VetRepository vetRepo;
     private final PetRepository petRepository;
     private final PetTypeRepository petTypeRepository;
@@ -21,7 +21,7 @@ public class DataLoader implements CommandLineRunner{
 
     public DataLoader(OwnerRepository employeeRepo, VetRepository vetRepo, PetRepository petRepository,
                       PetTypeRepository petTypeRepository, SpecialityRepository specialityRepository, VisitRepository visitRepository) {
-        this.employeeRepo = employeeRepo;
+        this.OwnerRepo = employeeRepo;
         this.vetRepo = vetRepo;
         this.petRepository = petRepository;
         this.petTypeRepository = petTypeRepository;
@@ -40,17 +40,10 @@ public class DataLoader implements CommandLineRunner{
 
     private void LoadData() {
         System.out.println("Creating PetTypes...");
-        PetType Dog = new PetType();
-        Dog.setName("Dog");
-
-        PetType Dog1 = new PetType();
-        Dog1.setName("Dog");
-
-        PetType Cat = new PetType();
-        Cat.setName("Cat");
+        PetType Dog = new PetType("Dog");
+        PetType Cat = new PetType("Cat");
 
         petTypeRepository.save(Dog);
-        petTypeRepository.save(Dog1);
         petTypeRepository.save(Cat);
 
 
@@ -67,9 +60,8 @@ public class DataLoader implements CommandLineRunner{
         mikesPet.setBirthDate(LocalDate.now());
         mikesPet.setPetType(Dog);
         mikesPet.setName("Rosco");
-        owner1.getPets().add(mikesPet);
-        employeeRepo.save(owner1);
-        petRepository.save(mikesPet);
+        OwnerRepo.save(owner1);
+/*        petRepository.save(mikesPet);*/
 
 
         Owner owner2 = new Owner();
@@ -86,9 +78,8 @@ public class DataLoader implements CommandLineRunner{
         AllePet.setPetType(Cat);
         AllePet.setName("CatRosco");
         AllePet.setPetType(Cat);
-        owner2.getPets().add(AllePet);
-        employeeRepo.save(owner2);
-        petRepository.save(AllePet);
+        OwnerRepo.save(owner2);
+        /*petRepository.save(AllePet);*/
 
 
         System.out.println("Creating Specialities...");
@@ -104,13 +95,14 @@ public class DataLoader implements CommandLineRunner{
         Vet vet1 = new Vet();
         vet1.setName("Andrey");
         vet1.setSurname("Higay");
-        vet1.getSpecialities().add(speciality);
+        vet1.AddSpecialty(speciality);
+        vet1.AddSpecialty(speciality2);
         vetRepo.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setName("Arkadiy");
         vet2.setSurname("Gaydar");
-        vet2.getSpecialities().add(speciality2);
+        vet2.AddSpecialty(speciality2);
         vetRepo.save(vet2);
 
         System.out.println("Creating pet's visits...");
@@ -119,7 +111,6 @@ public class DataLoader implements CommandLineRunner{
         visit1.setDescription("Leg problem");
         visit1.setPet(mikesPet);
         visit1.setVet(vet1);
-        mikesPet.getVisits().add(visit1);
         visitRepository.save(visit1);
 
         Visit visit2 = new Visit();
@@ -127,7 +118,6 @@ public class DataLoader implements CommandLineRunner{
         visit2.setDescription("Headache");
         visit2.setPet(AllePet);
         visit2.setVet(vet2);
-        AllePet.getVisits().add(visit2);
         visitRepository.save(visit2);
     }
 }

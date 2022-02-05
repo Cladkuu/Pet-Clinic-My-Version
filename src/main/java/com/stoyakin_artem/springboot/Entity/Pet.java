@@ -58,6 +58,7 @@ public class Pet extends BaseClass{
 
     public void setOwner(Owner owner) {
         this.owner = owner;
+        owner.AddPet(this);
     }
 
     public LocalDate getBirthDate() {

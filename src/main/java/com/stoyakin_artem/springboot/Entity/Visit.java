@@ -1,5 +1,6 @@
 package com.stoyakin_artem.springboot.Entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
