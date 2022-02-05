@@ -1,35 +1,55 @@
 package com.stoyakin_artem.springboot.Service.Impl;
 
+import com.stoyakin_artem.springboot.Entity.Pet;
+import com.stoyakin_artem.springboot.Entity.Vet;
 import com.stoyakin_artem.springboot.Service.VetService;
+import com.stoyakin_artem.springboot.repositories.VetRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-
+@Service
 public class VetServiceImpl implements VetService {
 
-    @Override
-    public List findAll() {
-        return null;
+    private final VetRepository vetRepository;
+
+    public VetServiceImpl(VetRepository vetRepository) {
+        this.vetRepository = vetRepository;
     }
 
     @Override
-    public Object getById(Long id) {
-        return null;
+    public Set<Vet> findAll() {
+        Set<Vet> vets = new HashSet<>();
+        vetRepository.findAll().forEach(vets::add);
+        return vets;
     }
 
     @Override
-    public void save(Object object) {
-
+    public Vet getById(Long id) {
+        return vetRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void delete(Object object) {
-
+    public void save(Vet object) {
+        vetRepository.save(object);
     }
 
     @Override
-    public Object update(Object object) {
-        return null;
+    public void delete(Vet object) {
+        vetRepository.delete(object);
     }
+
+    @Override
+    public Vet update(Vet object) {
+        return vetRepository.save(object);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        vetRepository.deleteById(id);
+    }
+
+
 }

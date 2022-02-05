@@ -4,10 +4,11 @@ import com.stoyakin_artem.springboot.Entity.Owner;
 import com.stoyakin_artem.springboot.Service.OwnerService;
 import com.stoyakin_artem.springboot.repositories.OwnerRepository;
 import com.stoyakin_artem.springboot.repositories.PetRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
-
+@Service
 public class OwnerServiceImpl implements OwnerService {
 
 
@@ -20,41 +21,46 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public List<Owner> findAll() {
-        return null;
+    public Set<Owner> findAll() {
+        Set<Owner> owners = new HashSet<>();
+        ownerRepository.findAll().forEach(owners::add);
+        return owners;
     }
 
     @Override
     public Owner getById(Long id) {
-        return null;
+        return ownerRepository.findById(id).orElse(null);
     }
 
     @Override
     public void save(Owner object) {
-        if(object!=null){
-
-        }
+        ownerRepository.save(object);
     }
 
     @Override
     public void delete(Owner object) {
-
+        ownerRepository.delete(object);
     }
 
     @Override
     public Owner update(Owner object) {
-        return null;
+        return ownerRepository.save(object);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        ownerRepository.deleteById(id);
     }
 
 
     @Override
-    public Owner findOwnerByName(String name) {
-        return null;
+    public Owner findOwnerBySurname(String name) {
+        return ownerRepository.findBySurname(name);
     }
 
     @Override
-    public List<Owner> findAllBySurname(String surname) {
-        return null;
+    public List<Owner> findAllBySurnameLike(String surname) {
+        return ownerRepository.findAllBySurnameLike(surname);
     }
 
 

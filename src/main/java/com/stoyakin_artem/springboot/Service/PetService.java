@@ -1,4 +1,6 @@
 package com.stoyakin_artem.springboot.Service;
 
-public interface PetService extends CrudService {
+import com.stoyakin_artem.springboot.Entity.Pet;
+
+public interface PetService extends CrudService<Pet> {
 }

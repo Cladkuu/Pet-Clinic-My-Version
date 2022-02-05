@@ -1,10 +1,10 @@
 package com.stoyakin_artem.springboot.Service;
 
-import java.util.List;
+import java.util.Set;
 
 public interface CrudService<Object> {
 
-    List<Object> findAll();
+    Set<Object> findAll();
 
     Object getById(Long id);
 
@@ -13,5 +13,7 @@ public interface CrudService<Object> {
     void delete(Object object);
 
     Object update(Object object);
+
+    void deleteById(Long id);
 
 }
