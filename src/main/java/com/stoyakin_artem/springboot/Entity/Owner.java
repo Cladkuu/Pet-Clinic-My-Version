@@ -60,8 +60,7 @@ public class Owner extends Person{
         this.pets = pets;
     }
 
-    public Set<Pet> AddPet(Pet pet){
+    public void AddPet(Pet pet){
         this.pets.add(pet);
-        return this.pets;
     }
 }

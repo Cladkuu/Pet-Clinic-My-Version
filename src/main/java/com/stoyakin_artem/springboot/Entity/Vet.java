@@ -27,6 +27,10 @@ public class Vet extends Person {
         this.specialities = specialities;
     }
 
+    public void addSpeciality(Speciality speciality){
+        this.specialities.add(speciality);
+    }
+
     public Set<Visit> getVisits() {
         return visits;
     }
@@ -37,5 +41,9 @@ public class Vet extends Person {
 
     public void AddSpecialty(Speciality speciality){
         this.specialities.add(speciality);
+    }
+
+    public void AddVisit(Visit visit){
+        this.visits.add(visit);
     }
 }

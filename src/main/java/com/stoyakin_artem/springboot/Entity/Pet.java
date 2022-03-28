@@ -36,6 +36,10 @@ public class Pet extends BaseClass{
         this.visits = visits;
     }
 
+    public void addVisit(Visit visit){
+        this.visits.add(visit);
+    }
+
     public String getName() {
         return name;
     }

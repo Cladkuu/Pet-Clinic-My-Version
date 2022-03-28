@@ -55,6 +55,11 @@ public class Visit extends BaseClass{
         this.pet = pet;
     }
 
+    public void AddPet(Pet pet){
+        setPet(pet);
+        pet.addVisit(this);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,4 +80,10 @@ public class Visit extends BaseClass{
     public void setVet(Vet vet) {
         this.vet = vet;
     }
-}
+
+    public void AddVet(Vet vet){
+        setVet(vet);
+        vet.AddVisit(this);
+    }
+
+    }
