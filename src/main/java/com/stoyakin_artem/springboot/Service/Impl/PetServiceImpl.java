@@ -3,20 +3,18 @@ package com.stoyakin_artem.springboot.Service.Impl;
 import com.stoyakin_artem.springboot.Entity.Pet;
 import com.stoyakin_artem.springboot.Service.PetService;
 import com.stoyakin_artem.springboot.repositories.PetRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Service
 public class PetServiceImpl implements PetService {
     private final PetRepository petRepository;
 
-
-    public PetServiceImpl(PetRepository petRepository) {
-        this.petRepository = petRepository;
-    }
 
     @Override
     public Set<Pet> findAll() {

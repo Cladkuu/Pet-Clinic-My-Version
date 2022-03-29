@@ -1,23 +1,19 @@
 package com.stoyakin_artem.springboot.Service.Impl;
 
-import com.stoyakin_artem.springboot.Entity.Pet;
+
 import com.stoyakin_artem.springboot.Entity.Visit;
 import com.stoyakin_artem.springboot.Service.VisitService;
 import com.stoyakin_artem.springboot.repositories.VisitRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Service
 public class VisitServiceImpl implements VisitService {
     private final VisitRepository visitRepository;
-
-    public VisitServiceImpl(VisitRepository visitRepository) {
-        this.visitRepository = visitRepository;
-    }
-
 
     @Override
     public Set<Visit> findAll() {

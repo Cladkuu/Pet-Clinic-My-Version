@@ -1,5 +1,6 @@
 package com.stoyakin_artem.springboot.Entity;
 
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -7,6 +8,11 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@EqualsAndHashCode(exclude = {"owner"})
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 public class Pet extends BaseClass{
 
@@ -28,48 +34,13 @@ public class Pet extends BaseClass{
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
     private Set<Visit> visits = new HashSet<>();
 
-    public Set<Visit> getVisits() {
-        return visits;
-    }
-
-    public void setVisits(Set<Visit> visits) {
-        this.visits = visits;
-    }
-
     public void addVisit(Visit visit){
         this.visits.add(visit);
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public PetType getPetType() {
-        return petType;
-    }
-
-    public void setPetType(PetType petType) {
-        this.petType = petType;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
+    public void setOwner0(Owner owner) {
         this.owner = owner;
         owner.AddPet(this);
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 }

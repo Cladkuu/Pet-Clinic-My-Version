@@ -2,13 +2,16 @@ package com.stoyakin_artem.springboot.bootstrap;
 
 import com.stoyakin_artem.springboot.Entity.*;
 import com.stoyakin_artem.springboot.repositories.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Component
 public class DataLoader implements CommandLineRunner{
 
@@ -19,16 +22,8 @@ public class DataLoader implements CommandLineRunner{
     private final SpecialityRepository specialityRepository;
     private final VisitRepository visitRepository;
 
-    public DataLoader(OwnerRepository employeeRepo, VetRepository vetRepo, PetRepository petRepository,
-                      PetTypeRepository petTypeRepository, SpecialityRepository specialityRepository, VisitRepository visitRepository) {
-        this.OwnerRepo = employeeRepo;
-        this.vetRepo = vetRepo;
-        this.petRepository = petRepository;
-        this.petTypeRepository = petTypeRepository;
-        this.specialityRepository = specialityRepository;
-        this.visitRepository = visitRepository;
-    }
 
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
         Set<PetType> petTypes = new HashSet<>();
@@ -49,21 +44,29 @@ public class DataLoader implements CommandLineRunner{
 
         System.out.println("Creating Owners and Pets...");
         Owner owner1 = new Owner();
+                /*Owner.builder()
+                .name("Michael")
+                .surname("Weston")
+                .address("123 Brickerel")
+                .city("Miami")
+                .telephone("1231231234")
+                .build();*/
         owner1.setName("Michael");
         owner1.setSurname("Weston");
         owner1.setAddress("123 Brickerel");
         owner1.setCity("Miami");
         owner1.setTelephone("1231231234");
 
+        System.out.println("Creating 1 Pet ...");
         Pet mikesPet = new Pet();
-        mikesPet.setOwner(owner1);
+        mikesPet.setOwner0(owner1);
         mikesPet.setBirthDate(LocalDate.now());
         mikesPet.setPetType(Dog);
         mikesPet.setName("Rosco");
         OwnerRepo.save(owner1);
 /*        petRepository.save(mikesPet);*/
 
-
+        System.out.println("Creating 2 Owner ...");
         Owner owner2 = new Owner();
         owner2.setName("Fiona");
         owner2.setSurname("Glenanne");
@@ -71,9 +74,9 @@ public class DataLoader implements CommandLineRunner{
         owner2.setCity("Miami");
         owner2.setTelephone("1231231234");
 
-
+        System.out.println("Creating 2 Pet ...");
         Pet AllePet = new Pet();
-        AllePet.setOwner(owner2);
+        AllePet.setOwner0(owner2);
         AllePet.setBirthDate(LocalDate.now());
         AllePet.setPetType(Cat);
         AllePet.setName("CatRosco");

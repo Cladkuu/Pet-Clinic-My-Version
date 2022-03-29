@@ -1,5 +1,7 @@
 package com.stoyakin_artem.springboot.Entity;
 
+import lombok.*;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -7,6 +9,12 @@ import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
+@Data
+@EqualsAndHashCode(exclude = {"pet", "vet"})
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 public class Visit extends BaseClass{
 
@@ -22,8 +30,6 @@ public class Visit extends BaseClass{
     @JoinColumn(name = "vet_id")
     private Vet vet;
 
-    public Visit() {
-    }
 
     public Visit(LocalDate date, String description, Pet pet) {
         this.date = date;
@@ -31,54 +37,9 @@ public class Visit extends BaseClass{
         this.pet = pet;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
     public void AddPet(Pet pet){
         setPet(pet);
         pet.addVisit(this);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Visit)) return false;
-        Visit visit = (Visit) o;
-        return getDate().equals(visit.getDate()) && Objects.equals(getDescription(), visit.getDescription()) && Objects.equals(getPet(), visit.getPet());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getDate(), getDescription(), getPet());
-    }
-
-    public Vet getVet() {
-        return vet;
-    }
-
-    public void setVet(Vet vet) {
-        this.vet = vet;
     }
 
     public void AddVet(Vet vet){

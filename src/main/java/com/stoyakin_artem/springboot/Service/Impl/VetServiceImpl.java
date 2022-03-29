@@ -4,20 +4,19 @@ import com.stoyakin_artem.springboot.Entity.Pet;
 import com.stoyakin_artem.springboot.Entity.Vet;
 import com.stoyakin_artem.springboot.Service.VetService;
 import com.stoyakin_artem.springboot.repositories.VetRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Service
 public class VetServiceImpl implements VetService {
 
     private final VetRepository vetRepository;
 
-    public VetServiceImpl(VetRepository vetRepository) {
-        this.vetRepository = vetRepository;
-    }
 
     @Override
     public Set<Vet> findAll() {

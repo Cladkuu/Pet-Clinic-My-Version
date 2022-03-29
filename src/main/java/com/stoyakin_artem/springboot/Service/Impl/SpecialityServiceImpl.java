@@ -4,20 +4,19 @@ import com.stoyakin_artem.springboot.Entity.Pet;
 import com.stoyakin_artem.springboot.Entity.Speciality;
 import com.stoyakin_artem.springboot.Service.SpecialityService;
 import com.stoyakin_artem.springboot.repositories.SpecialityRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Service
 public class SpecialityServiceImpl implements SpecialityService {
 
     private final SpecialityRepository specialityRepository;
 
-    public SpecialityServiceImpl(SpecialityRepository specialityRepository) {
-        this.specialityRepository = specialityRepository;
-    }
 
     @Override
     public Set<Speciality> findAll() {

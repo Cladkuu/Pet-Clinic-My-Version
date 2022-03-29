@@ -4,10 +4,12 @@ import com.stoyakin_artem.springboot.Entity.Owner;
 import com.stoyakin_artem.springboot.Service.OwnerService;
 import com.stoyakin_artem.springboot.repositories.OwnerRepository;
 import com.stoyakin_artem.springboot.repositories.PetRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@RequiredArgsConstructor
 @Service
 public class OwnerServiceImpl implements OwnerService {
 
@@ -15,10 +17,6 @@ public class OwnerServiceImpl implements OwnerService {
     private final OwnerRepository ownerRepository;
     private final PetRepository petRepository;
 
-    public OwnerServiceImpl(OwnerRepository ownerRepository, PetRepository petRepository) {
-        this.ownerRepository = ownerRepository;
-        this.petRepository = petRepository;
-    }
 
     @Override
     public Set<Owner> findAll() {

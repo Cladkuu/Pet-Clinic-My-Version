@@ -1,7 +1,9 @@
 package com.stoyakin_artem.springboot.Service;
 
+import javax.transaction.Transactional;
 import java.util.Set;
 
+@Transactional
 public interface CrudService<Object> {
 
     Set<Object> findAll();

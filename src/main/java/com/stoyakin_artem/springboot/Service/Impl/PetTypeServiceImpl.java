@@ -5,20 +5,18 @@ import com.stoyakin_artem.springboot.Entity.PetType;
 import com.stoyakin_artem.springboot.Service.PetService;
 import com.stoyakin_artem.springboot.Service.PetTypeService;
 import com.stoyakin_artem.springboot.repositories.PetTypeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Service
 public class PetTypeServiceImpl implements PetTypeService {
 
     private  final PetTypeRepository petTypeRepository;
-
-    public PetTypeServiceImpl(PetTypeRepository petTypeRepository) {
-        this.petTypeRepository = petTypeRepository;
-    }
 
 
     @Override

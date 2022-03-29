@@ -1,14 +1,18 @@
 package com.stoyakin_artem.springboot.Entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 public class Vet extends Person {
 
-    public Vet() {
-    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "vet_specialties",
@@ -18,26 +22,6 @@ public class Vet extends Person {
 
     @OneToMany(mappedBy = "vet", cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Visit> visits = new HashSet<>();
-
-    public Set<Speciality> getSpecialities() {
-        return specialities;
-    }
-
-    public void setSpecialities(Set<Speciality> specialities) {
-        this.specialities = specialities;
-    }
-
-    public void addSpeciality(Speciality speciality){
-        this.specialities.add(speciality);
-    }
-
-    public Set<Visit> getVisits() {
-        return visits;
-    }
-
-    public void setVisits(Set<Visit> visits) {
-        this.visits = visits;
-    }
 
     public void AddSpecialty(Speciality speciality){
         this.specialities.add(speciality);
