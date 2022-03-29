@@ -83,7 +83,7 @@ public class DataLoader implements CommandLineRunner{
         AllePet.setPetType(Cat);
         OwnerRepo.save(owner2);
         /*petRepository.save(AllePet);*/
-
+        //gdghf
 
         System.out.println("Creating Specialities...");
         Speciality speciality = new Speciality();
